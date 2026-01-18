@@ -524,22 +524,6 @@ function Library:create_ui()
     Icon.Size = UDim2.new(0, 22, 0, 22) -- slightly larger for detail
     Icon.BorderSizePixel = 0
     Icon.Parent = Handler
-
-    local Glow = Instance.new("UIStroke")
-    Glow.Color = Color3.fromRGB(220, 210, 255)
-    Glow.Thickness = 1.5
-    Glow.Transparency = 0.45
-    Glow.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    Glow.Parent = Icon
-
-    local Gradient = Instance.new("UIGradient")
-Gradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(210, 210, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
-}
-Gradient.Rotation = 45
-Gradient.Parent = Icon
    
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
