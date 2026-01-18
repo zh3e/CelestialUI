@@ -516,49 +516,138 @@ end
 
 function Library:create_ui()
     local old_Celestial = CoreGui:FindFirstChild('Celestial')
-
     if old_Celestial then
         Debris:AddItem(old_Celestial, 0)
     end
-
+    
     local Celestial = Instance.new('ScreenGui')
     Celestial.ResetOnSpawn = false
     Celestial.Name = 'Celestial.lua'
     Celestial.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     Celestial.Parent = CoreGui
-    
+   
     local Container = Instance.new('Frame')
     Container.ClipsDescendants = true
     Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Container.AnchorPoint = Vector2.new(0.5, 0.5)
     Container.Name = 'Container'
-    Container.BackgroundTransparency = 0.05000000074505806
+    Container.BackgroundTransparency = 0.05
     Container.BackgroundColor3 = Color3.fromRGB(12, 13, 15)
     Container.Position = UDim2.new(0.5, 0, 0.5, 0)
     Container.Size = UDim2.new(0, 0, 0, 0)
     Container.Active = true
     Container.BorderSizePixel = 0
     Container.Parent = Celestial
-    
+   
     local UICorner = Instance.new('UICorner')
     UICorner.CornerRadius = UDim.new(0, 15)
     UICorner.Parent = Container
-    
+   
     local UIStroke = Instance.new('UIStroke')
     UIStroke.Color = Color3.fromRGB(201, 184, 240)
     UIStroke.Transparency = 0.5
     UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     UIStroke.Parent = Container
-    
+   
     local Handler = Instance.new('Frame')
     Handler.BackgroundTransparency = 1
     Handler.Name = 'Handler'
-    Handler.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Handler.Size = UDim2.new(0, 698, 0, 479)
     Handler.BorderSizePixel = 0
     Handler.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Handler.Parent = Container
-    
+   
+    -- ─── Improved Cosmic Logo + Title (old parts removed) ───
+    local LogoContainer = Instance.new("Frame")
+    LogoContainer.Name = "LogoContainer"
+    LogoContainer.BackgroundTransparency = 1
+    LogoContainer.Size = UDim2.new(0, 52, 0, 52)
+    LogoContainer.Position = UDim2.new(0.018, 0, 0.038, 0)
+    LogoContainer.AnchorPoint = Vector2.new(0, 0.5)
+    LogoContainer.Parent = Handler
+
+    local LogoCircle = Instance.new("Frame")
+    LogoCircle.Name = "MoonBase"
+    LogoCircle.Size = UDim2.new(1, 0, 1, 0)
+    LogoCircle.BackgroundColor3 = Color3.fromRGB(18, 18, 28)
+    LogoCircle.BackgroundTransparency = 0.32
+    LogoCircle.Parent = LogoContainer
+
+    local UICornerLogo = Instance.new("UICorner")
+    UICornerLogo.CornerRadius = UDim.new(1, 0)
+    UICornerLogo.Parent = LogoCircle
+
+    local LogoStroke = Instance.new("UIStroke")
+    LogoStroke.Color = Color3.fromRGB(185, 170, 255)
+    LogoStroke.Transparency = 0.38
+    LogoStroke.Thickness = 1.8
+    LogoStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    LogoStroke.Parent = LogoCircle
+
+    local Crescent = Instance.new("Frame")
+    Crescent.Name = "CrescentGlow"
+    Crescent.Size = UDim2.new(0.94, 0, 0.94, 0)
+    Crescent.Position = UDim2.new(0.03, 0, 0.03, 0)
+    Crescent.BackgroundColor3 = Color3.fromRGB(235, 220, 255)
+    Crescent.BackgroundTransparency = 0.72
+    Crescent.Parent = LogoCircle
+
+    local CrescentCorner = Instance.new("UICorner")
+    CrescentCorner.CornerRadius = UDim.new(1, 0)
+    CrescentCorner.Parent = Crescent
+
+    for i = 1, 5 do
+        local star = Instance.new("ImageLabel")
+        star.Name = "Star" .. i
+        star.Image = "rbxassetid://10709791437"
+        star.ImageColor3 = Color3.fromRGB(245, 235, 255)
+        star.ImageTransparency = 0.3 + math.random() * 0.4
+        star.Size = UDim2.new(0, math.random(7,11), 0, math.random(7,11))
+        star.Position = UDim2.new(math.random(15,85)/100, 0, math.random(15,85)/100, 0)
+        star.BackgroundTransparency = 1
+        star.ZIndex = 5
+        star.Parent = LogoCircle
+        
+        task.spawn(function()
+            while star.Parent do
+                TweenService:Create(star, TweenInfo.new(1.6 + math.random()*1.4, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {
+                    ImageTransparency = 0.08 + math.random()*0.5
+                }):Play()
+                task.wait(3 + math.random()*2)
+            end
+        end)
+    end
+
+    local ClientName = Instance.new("TextLabel")
+    ClientName.Name = "ClientName"
+    ClientName.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    ClientName.Text = "Celestial.lua"
+    ClientName.TextColor3 = Color3.fromRGB(235, 220, 255)
+    ClientName.TextTransparency = 0.06
+    ClientName.TextSize = 16
+    ClientName.Size = UDim2.new(0, 160, 0, 26)
+    ClientName.Position = UDim2.new(0.09, 52, 0.052, 0)
+    ClientName.BackgroundTransparency = 1
+    ClientName.TextXAlignment = Enum.TextXAlignment.Left
+    ClientName.Parent = Handler
+
+    local TextGradient = Instance.new("UIGradient")
+    TextGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(210,190,255)),
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(245,235,255)),
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(185,170,255))
+    }
+    TextGradient.Rotation = 30
+    TextGradient.Parent = ClientName
+
+    local TextStroke = Instance.new("UIStroke")
+    TextStroke.Color = Color3.fromRGB(170, 140, 255)
+    TextStroke.Transparency = 0.60
+    TextStroke.Thickness = 1.4
+    TextStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+    TextStroke.Parent = ClientName
+
+    -- ─── Continue with Tabs, Divider, Sections, Minimize, etc. (paste your original code here) ───
     local Tabs = Instance.new('ScrollingFrame')
     Tabs.ScrollBarImageTransparency = 1
     Tabs.ScrollBarThickness = 0
@@ -595,40 +684,6 @@ function Library:create_ui()
     ClientName.TextSize = 13
     ClientName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     ClientName.Parent = Handler
-    
-    local UIGradient = Instance.new('UIGradient')
-    UIGradient.Color = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(155, 155, 155)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
-    }
-    UIGradient.Parent = ClientName
-    
-    local Pin = Instance.new('Frame')
-    Pin.Name = 'Pin'
-    Pin.Position = UDim2.new(0.026000000536441803, 0, 0.13600000739097595, 0)
-    Pin.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Pin.Size = UDim2.new(0, 2, 0, 16)
-    Pin.BorderSizePixel = 0
-    Pin.BackgroundColor3 = Color3.fromRGB(232, 223, 255)
-    Pin.Parent = Handler
-    
-    local UICorner = Instance.new('UICorner')
-    UICorner.CornerRadius = UDim.new(1, 0)
-    UICorner.Parent = Pin
-    
-    local Icon = Instance.new('ImageLabel')
-    Icon.ImageColor3 = Color3.fromRGB(232, 223, 255)
-    Icon.ScaleType = Enum.ScaleType.Fit
-    Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Icon.AnchorPoint = Vector2.new(0, 0.5)
-    Icon.Image = 'rbxassetid://10709819149'
-    Icon.BackgroundTransparency = 1
-    Icon.Position = UDim2.new(0.02500000037252903, 0, 0.054999999701976776, 0)
-    Icon.Name = 'Icon'
-    Icon.Size = UDim2.new(0, 18, 0, 18)
-    Icon.BorderSizePixel = 0
-    Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Icon.Parent = Handler
     
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
