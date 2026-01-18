@@ -527,6 +527,18 @@ Icon.Size = UDim2.new(0, 16, 0, 16)
 
 Icon.BorderSizePixel = 0
 Icon.Parent = Handler
+
+Icon.BackgroundTransparency = 1
+Icon.BorderSizePixel = 0
+Icon.BackgroundColor3 = Color3.new(1,1,1)
+Icon.ClipsDescendants = false
+
+-- remove any strokes or corners accidentally added
+for _, v in ipairs(Icon:GetDescendants()) do
+	if v:IsA("UIStroke") or v:IsA("UICorner") then
+		v:Destroy()
+	end
+end
    
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
