@@ -1,3 +1,5 @@
+now make the script below logo be like the image uploaded
+ 
 getgenv().GG = {
     Language = {
         CheckboxEnabled = "Enabled",
@@ -514,31 +516,19 @@ function Library:create_ui()
     UICorner.CornerRadius = UDim.new(1, 0)
     UICorner.Parent = Pin
    
-    local Icon = Instance.new("ImageLabel")
-Icon.Name = "Icon"
-Icon.Image = "rbxassetid://113979478438015"
-Icon.ScaleType = Enum.ScaleType.Fit
-Icon.BackgroundTransparency = 1
-Icon.ImageColor3 = Color3.fromRGB(255, 255, 255)
-
--- slightly adjusted for smaller size
-Icon.Position = UDim2.new(0.028, 0, 0.057, 0)
-Icon.Size = UDim2.new(0, 16, 0, 16)
-
-Icon.BorderSizePixel = 0
-Icon.Parent = Handler
-
-Icon.BackgroundTransparency = 1
-Icon.BorderSizePixel = 0
-Icon.BackgroundColor3 = Color3.new(1,1,1)
-Icon.ClipsDescendants = false
-
--- remove any strokes or corners accidentally added
-for _, v in ipairs(Icon:GetDescendants()) do
-	if v:IsA("UIStroke") or v:IsA("UICorner") then
-		v:Destroy()
-	end
-end
+    local Icon = Instance.new('ImageLabel')
+    Icon.ImageColor3 = Color3.fromRGB(232, 223, 255)
+    Icon.ScaleType = Enum.ScaleType.Fit
+    Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Icon.AnchorPoint = Vector2.new(0, 0.5)
+    Icon.Image = 'rbxassetid://113979478438015'
+    Icon.BackgroundTransparency = 1
+    Icon.Position = UDim2.new(0.02500000037252903, 0, 0.054999999701976776, 0)
+    Icon.Name = 'Icon'
+    Icon.Size = UDim2.new(0, 18, 0, 18)
+    Icon.BorderSizePixel = 0
+    Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Icon.Parent = Handler
    
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
