@@ -515,15 +515,18 @@ function Library:create_ui()
     UICorner.Parent = Pin
    
     local Icon = Instance.new("ImageLabel")
-    Icon.Name = "Icon"
-    Icon.Image = "rbxassetid://113979478438015"
-    Icon.ScaleType = Enum.ScaleType.Fit
-    Icon.BackgroundTransparency = 1
-    Icon.ImageColor3 = Color3.fromRGB(255, 255, 255) -- keep original colors
-    Icon.Position = UDim2.new(0.025, 0, 0.055, 0)
-    Icon.Size = UDim2.new(0, 22, 0, 22) -- slightly larger for detail
-    Icon.BorderSizePixel = 0
-    Icon.Parent = Handler
+Icon.Name = "Icon"
+Icon.Image = "rbxassetid://113979478438015"
+Icon.ScaleType = Enum.ScaleType.Fit
+Icon.BackgroundTransparency = 1
+Icon.ImageColor3 = Color3.fromRGB(255, 255, 255)
+
+-- slightly adjusted for smaller size
+Icon.Position = UDim2.new(0.028, 0, 0.057, 0)
+Icon.Size = UDim2.new(0, 16, 0, 16)
+
+Icon.BorderSizePixel = 0
+Icon.Parent = Handler
    
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
