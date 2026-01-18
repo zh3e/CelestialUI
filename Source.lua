@@ -514,19 +514,25 @@ function Library:create_ui()
     UICorner.CornerRadius = UDim.new(1, 0)
     UICorner.Parent = Pin
    
-    local Icon = Instance.new('ImageLabel')
-    Icon.ImageColor3 = Color3.fromRGB(232, 223, 255)
-    Icon.ScaleType = Enum.ScaleType.Fit
-    Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Icon.AnchorPoint = Vector2.new(0, 0.5)
-    Icon.Image = 'rbxassetid://10709819149'
-    Icon.BackgroundTransparency = 1
-    Icon.Position = UDim2.new(0.02500000037252903, 0, 0.054999999701976776, 0)
-    Icon.Name = 'Icon'
-    Icon.Size = UDim2.new(0, 18, 0, 18)
-    Icon.BorderSizePixel = 0
-    Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Icon.Parent = Handler
+    local Icon = Instance.new("ImageLabel")
+Icon.Name = "Icon"
+Icon.Parent = Handler
+
+-- 🔥 YOUR UPLOADED IMAGE
+Icon.Image = "rbxassetid://113979478438015"
+
+-- Size & position
+Icon.Size = UDim2.fromOffset(22, 22)
+Icon.Position = UDim2.new(0.025, 0, 0.055, 0)
+Icon.AnchorPoint = Vector2.new(0, 0.5)
+
+-- Visual style
+Icon.BackgroundTransparency = 1
+Icon.ScaleType = Enum.ScaleType.Fit
+Icon.ImageTransparency = 0
+
+-- Slight silver tint like the image
+Icon.ImageColor3 = Color3.fromRGB(220, 220, 230)
    
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
