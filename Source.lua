@@ -517,22 +517,55 @@ function Library:create_ui()
     local Icon = Instance.new("ImageLabel")
 Icon.Name = "Icon"
 Icon.Parent = Handler
-
--- 🔥 YOUR UPLOADED IMAGE
 Icon.Image = "rbxassetid://113979478438015"
-
--- Size & position
 Icon.Size = UDim2.fromOffset(22, 22)
 Icon.Position = UDim2.new(0.025, 0, 0.055, 0)
 Icon.AnchorPoint = Vector2.new(0, 0.5)
-
--- Visual style
 Icon.BackgroundTransparency = 1
 Icon.ScaleType = Enum.ScaleType.Fit
 Icon.ImageTransparency = 0
-
--- Slight silver tint like the image
 Icon.ImageColor3 = Color3.fromRGB(220, 220, 230)
+
+-- ADD PLAYER AVATAR CODE HERE:
+local PlayerAvatar = Instance.new("ImageLabel")
+PlayerAvatar.Name = "PlayerAvatar"
+PlayerAvatar.Parent = Handler
+PlayerAvatar.Size = UDim2.fromOffset(50, 50)
+PlayerAvatar.Position = UDim2.new(0.026, 0, 0.85, 0)
+PlayerAvatar.AnchorPoint = Vector2.new(0, 0)
+PlayerAvatar.BackgroundTransparency = 1
+PlayerAvatar.ScaleType = Enum.ScaleType.Fit
+PlayerAvatar.Image = Players:GetUserThumbnailAsync(Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size150x150)
+
+local AvatarCorner = Instance.new("UICorner")
+AvatarCorner.CornerRadius = UDim.new(0, 8)
+AvatarCorner.Parent = PlayerAvatar
+
+local PlayerUsername = Instance.new("TextLabel")
+PlayerUsername.Name = "PlayerUsername"
+PlayerUsername.Parent = Handler
+PlayerUsername.Size = UDim2.fromOffset(100, 15)
+PlayerUsername.Position = UDim2.new(0.026, 60, 0.85, 17)
+PlayerUsername.BackgroundTransparency = 1
+PlayerUsername.TextColor3 = Color3.fromRGB(236, 207, 255)
+PlayerUsername.TextTransparency = 0.2
+PlayerUsername.Text = "@" .. Players.LocalPlayer.Name
+PlayerUsername.TextSize = 12
+PlayerUsername.TextXAlignment = Enum.TextXAlignment.Left
+PlayerUsername.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+
+local ExpiryText = Instance.new("TextLabel")
+ExpiryText.Name = "ExpiryText"
+ExpiryText.Parent = Handler
+ExpiryText.Size = UDim2.fromOffset(100, 12)
+ExpiryText.Position = UDim2.new(0.026, 60, 0.85, 32)
+ExpiryText.BackgroundTransparency = 1
+ExpiryText.TextColor3 = Color3.fromRGB(236, 207, 255)
+ExpiryText.TextTransparency = 0.5
+ExpiryText.Text = "Expires: 99d"
+ExpiryText.TextSize = 10
+ExpiryText.TextXAlignment = Enum.TextXAlignment.Left
+ExpiryText.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.Regular, Enum.FontStyle.Normal)
    
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
@@ -567,6 +600,7 @@ Icon.ImageColor3 = Color3.fromRGB(220, 220, 230)
     UIScale.Parent = Container
    
     self._ui = Celestial
+    
     local function on_drag(input: InputObject, process: boolean)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             self._dragging = true
@@ -1217,7 +1251,7 @@ Icon.ImageColor3 = Color3.fromRGB(220, 220, 230)
                 Title.TextSize = 12
                 Title.AutomaticSize = Enum.AutomaticSize.XY
                 Title.Parent = Paragraph
-           
+
                 -- Body Text
                 local Body = Instance.new('TextLabel')
                 Body.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.Regular, Enum.FontStyle.Normal)
